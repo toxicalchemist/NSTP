@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Activity</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="images/logo1.png" alt="Logo 1">
+                <img src="images/logo2.png" alt="Logo 2">
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="trading.html">Trading Activity</a></li>
+                <li><a href="products.html">Products</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="trading-container">
+        <section class="accepted-recyclables">
+            <h2>♻️ Accepted Recyclables</h2>
+            <div class="recyclables-list">
+                <div class="recyclable-item">
+                    <img src="images/pet-bottles.jpg" alt="Pet Bottles">
+                    <p>Pet Bottles</p>
+                </div>
+                <div class="recyclable-item">
+                    <img src="images/plastics.jpg" alt="Single-use Plastics">
+                    <p>Single-use Plastics</p>
+                </div>
+                <div class="recyclable-item">
+                    <img src="images/wrappers.jpg" alt="Snack Wrappers">
+                    <p>Snack Wrappers</p>
+                </div>
+                <div class="recyclable-item">
+                    <img src="images/plastic-bags.jpg" alt="Plastic Bags">
+                    <p>Plastic Bags</p>
+                </div>
+                <div class="recyclable-item">
+                    <img src="images/food-container.jpg" alt="Food Containers">
+                    <p>Food Containers</p>
+                </div>
+                <div class="recyclable-item">
+                    <img src="images/cotton-clothes.png" alt="Used Cotton Clothes">
+                    <p>Used Cotton Clothes</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trade Box -->
+        <section class="trade-box">
+            <h2>🔄 Trade Your Recyclables</h2>
+            <label for="item">Select an Item to Trade:</label>
+            <select id="item" onchange="updateTrade()">
+                <option value="less2kg">Less than 2kg</option>
+                <option value="2to3kg">2 to 3kg</option>
+                <option value="3to4kg">3 to 4kg</option>
+                <option value="4to5kg">4 to 5kg</option>
+            </select>
+
+            <p>Equivalent Value:</p>
+            <div class="trade-result">
+                <img id="trade-image" src="images/eco_bag.jpg" alt="Trade Item">
+                <p id="trade-text">1 Eco Bag or 1 Eco Rag</p>
+            </div>
+
+            <button onclick="confirmTrade()">Trade</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 SBIT-1F GROUP 1. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function updateTrade() {
+            let item = document.getElementById("item").value;
+            let tradeText = document.getElementById("trade-text");
+            let tradeImage = document.getElementById("trade-image");
+
+            switch(item) {
+                case "less2kg":
+                    tradeText.textContent = "1 Eco Bag or 1 Eco Rag";
+                    tradeImage.src = "images/eco_bag.jpg";
+                    break;
+                case "2to3kg":
+                    tradeText.textContent = "Vermitea / Liquid Fertilizer";
+                    tradeImage.src = "images/vermitea.png";
+                    break;
+                case "3to4kg":
+                    tradeText.textContent = "1 Kilo Coco Fiber / Rice Hull";
+                    tradeImage.src = "images/rice hull.jpg";
+                    break;
+                case "4to5kg":
+                    tradeText.textContent = "1 Kilo Good Soil";
+                    tradeImage.src = "images/soil.jpg";
+                    break;
+                default:
+                    tradeText.textContent = "Select an item";
+                    tradeImage.src = "images/NO.png";
+            }
+        }
+
+        function confirmTrade() {
+            alert("Trade successful! Thank you for participating.");
+        }
+    </script>
+</body>
+</html>
