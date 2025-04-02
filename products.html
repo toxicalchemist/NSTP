@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Products</title>
+    <link rel="stylesheet" href="c.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="p.css">
+    <link rel="stylesheet" href="css.css">
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="images/logo1.png" alt="Logo 1">
+                <img src="images/logo2.png" alt="Logo 2">
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="trading.html">Trading Activity</a></li>
+                <li><a href="products.html">Products</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="products-container">
+        <h1>Barangay Products</h1>
+
+        <div class="product-grid">
+            <div class="product-card" onclick="openModal('Recycled Bags', 'Eco-friendly bags made from recycled materials.', 'images/Bag2.png')">
+                <img src="images/Bag2.png" alt="Recycled Bags">
+                <p>Recycled Bags</p>
+            </div>
+            
+            <div class="product-card" onclick="openModal('Recycled Mats', 'Eco-friendly mats made from recycled materials', 'images/eco-pots.jpg')">
+                <img src="images/rag.png" alt="Eco-Friendly Pots">
+                <p>Recycled Mats</p>
+            </div>
+
+            <div class="product-card" onclick="openModal('Recycled Bags', 'Locally handcrafted bag using natural fibers.', 'images/handwoven-mats.jpg')">
+                <img src="images/h.png" alt="Handwoven Mats">
+                <p>Recycled Bags</p>
+            </div>
+
+            <div class="product-card" onclick="openModal('Recycled Mats', 'Locally handcrafted mats using natural fibers.', 'images/organic-soaps.jpg')">
+                <img src="images/mats2.png" alt="Organic Soaps">
+                <p>Recycled Mats</p>
+            </div>
+
+            <div class="product-card" onclick="openModal('Recycled Bags', 'Eco-friendly bags made from recycled materials.', 'images/bamboo-straws.jpg')">
+                <img src="images/bag3.png" alt="Bamboo Straws">
+                <p>Recycled Bags</p>
+
+            </div>
+            <div class="product-card" onclick="openModal('Recycled Bags', 'Locally handcrafted bag using natural fibers.', 'images/bamboo-straws.jpg')">
+                <img src="images/bag4.png" alt="Bamboo Straws">
+                <p>Recycled Bags</p>
+
+            </div>
+            <div class="product-card" onclick="openModal('Recycled Bags', 'Locally handcrafted bag using natural fibers.', 'images/bamboo-straws.jpg')">
+                <img src="images/eco_bag.jpg" alt="Bamboo Straws">
+                <p>Recycled Bags</p>
+
+            </div>
+            <div class="product-card" onclick="openModal('Recycled Purse', 'Locally handcrafted purses using natural fibers.', 'images/bamboo-straws.jpg')">
+                <img src="images/purse.png" alt="Bamboo Straws">
+                <p>Recycled Purse</p>
+
+            </div>
+        
+        </div>
+    </div>
+
+
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+    </div>
+</div>
+ <!-- Footer -->
+ <footer>
+    <p>&copy; 2025 SBIT-1F GROUP 1. All rights reserved.</p>
+</footer>
+
+
+    <script>
+       // Get the modal element
+var modal = document.getElementById("productModal");
+var modalTitle = document.getElementById("modalTitle");
+var modalDesc = document.getElementById("modalDesc");
+
+// Function to open the modal
+function openModal(title, description) {
+    modal.style.display = "flex"; // Ensure flexbox centering works
+    modalTitle.innerText = title;
+    modalDesc.innerText = description;
+}
+
+// Function to close the modal
+function closeModal() {
+    modal.style.display = "none";
+}
+
+// Close modal when clicking outside the box
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeModal();
+    }
+};
+
+    </script>
+
+</body>
+</html>
