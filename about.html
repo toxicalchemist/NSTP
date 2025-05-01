@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Barangay Talipapa - About Us</title>
+  <link rel="stylesheet" href="about.css" />
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo-container">
+    <a href="https://quezoncity.gov.ph" target="_blank"><img src="images/logo3.png" alt="Logo"></a>
+    <a href="https://toxicalchemist.github.io/NSTP/" target="_blank"><img src="images/logo2.png" alt="Logo"></a>
+    <a href="https://qcu.edu.ph" target="_blank"><img src="images/logo5.png" alt="Logo"></a>
+    <a href="https://example.com" target="_blank"><img src="images/logo4.png" alt="Logo"></a>
+    <a href="https://example.com" target="_blank"><img src="images/logo1.png" alt="Logo"></a>
+  </div>
+  <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+  <ul>
+    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+    <li><a href="tradehub.html"><i class="fas fa-exchange-alt"></i> Trading Activity</a></li>
+    <li><a href="resources.html"><i class="fas fa-file-download"></i> Resources</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- History + Map Section -->
+  <div class="side-by-side-container">
+    <section class="our-history">
+      <img src="images/lieutenant.jpg" alt="Lieutenant">
+      <div class="our-history-text">
+        <h2><i class="fas fa-history"></i> Our History</h2>
+        <p>Barangay Talipapa was founded in 1854 by Lieutenant General Manuel Pavia y Marquez de Novaliches. He named the area after seeing a store called “Talipapa.” Sitios under this barrio are San Agustin, Sangandaan, Sauyo, Libis, and Kabaruhan. It is the birthplace of Melchora Aquino (Tandang Sora).</p>
+      </div>
+    </section>
+
+    <section class="map-section">
+      <h2><i class="fas fa-map-marked-alt"></i> Find Us</h2>
+      <div class="map-container">
+        <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.991149001193!2d121.02830371527878!3d14.703308089732532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b0f290522c41%3A0x8fdbe67ace5f0571!2sTalipapa%2C%20Novaliches%2C%20Quezon%20City!5e0!3m2!1sen!2sph!4v1712559024135" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <p class="map-address">📍 Talipapa Barangay Hall, 506 Quirino Hwy, Novaliches, Quezon City</p>
+    </section>
+  </div>
+
+  <section class="barangay-officials">
+    <h2><i class="fas fa-user-tie"></i> Barangay Officials</h2>
+  
+
+    
+ 
+    <div class="top-row">
+      <div data-role="Punong Barangay"></div>
+    </div>
+  
+   
+
+    
+      <!-- Kagawads -->
+      <div class="official-column">
+        <h3 class="official-group-title">Kagawads</h3>
+        <div class="official-row">
+          <div data-role="Kagawad 1"></div>
+          <div data-role="Kagawad 2"></div>
+          <div data-role="Kagawad 3"></div>
+          <div data-role="Kagawad 4"></div>
+          <div data-role="Kagawad 5"></div>
+          <div data-role="Kagawad 6"></div>
+          <div data-role="Kagawad 7"></div>
+        </div>
+      </div>
+    
+      <!-- SK Members -->
+      <div class="official-column">
+        <h3 class="official-group-title">SK Members</h3>
+        <div class="official-row">
+          <div data-role="SK Member 1"></div>
+          <div data-role="SK Member 2"></div>
+          <div data-role="SK Member 3"></div>
+          <div data-role="SK Member 4"></div>
+          <div data-role="SK Member 5"></div>
+          <div data-role="SK Member 6"></div>
+          <div data-role="SK Member 7"></div>
+        </div>
+      </div>
+    
+      <!-- Admin Roles -->
+      <div class="official-column">
+        <h3 class="official-group-title">Admin Roles</h3>
+        <div class="official-row">
+          <div data-role="Barangay Secretary"></div>
+          <div data-role="Barangay Treasurer"></div>
+          <div data-role="Tagapamahala ng Barangay"></div>
+        </div>
+      </div>
+    </section>
+    
+    
+
+    </div>
+  </section>
+  
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-info">
+      <p><i class="fas fa-map-marker-alt"></i> Barangay Talipapa, Novaliches, Quezon City</p>
+      <p><i class="fas fa-phone"></i> Desk Office: 0917-1556735</p>
+      <p><i class="fas fa-phone"></i> Admin Office: 8-3518171</p>
+      <p><i class="fas fa-envelope"></i> Email: barangay.talipapa2018@gmail.com</p>
+    </div>
+    <div class="copyright">
+      &copy; 2025 Group1 SBIT-1F. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript for Dynamic Official Rendering -->
+<script>
+  const officersList = JSON.parse(localStorage.getItem('officersList')) || [];
+
+  function renderOfficial(selector, position, index = 0) {
+    const container = document.querySelector(selector);
+    let match = null;
+
+    if (position.startsWith("Kagawad")) {
+      const kagawads = officersList.filter(o => o.position === "Kagawad");
+      match = kagawads[index];
+    } else if (position.startsWith("SK Member")) {
+      const sk = officersList.filter(o => o.position === "SK Member");
+      match = sk[index];
+    } else {
+      match = officersList.find(o => o.position === position);
+    }
+
+    if (container && match) {
+      container.innerHTML = `
+        <div class="official-card">
+          <img src="${match.image || 'images/noimg.jpg'}" alt="${match.name}">
+          <h4>${match.name}</h4>
+          <p>${match.position}</p>
+        </div>
+      `;
+    }
+  }
+
+  renderOfficial('[data-role="Tagapamahala ng Barangay"]', 'Tagapamahala ng Barangay');
+  renderOfficial('[data-role="Punong Barangay"]', 'Punong Barangay');
+
+  for (let i = 1; i <= 7; i++) {
+    renderOfficial(`[data-role="Kagawad ${i}"]`, 'Kagawad', i - 1);
+    renderOfficial(`[data-role="SK Member ${i}"]`, 'SK Member', i - 1);
+  }
+
+  renderOfficial('[data-role="Barangay Secretary"]', 'Barangay Secretary');
+  renderOfficial('[data-role="Barangay Treasurer"]', 'Barangay Treasurer');
+</script>
+
+<!-- Hamburger Menu Script -->
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('nav ul');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barangay Talipapa - Home</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+
+  <nav>
+    <div class="logo-container">
+      <a href="https://quezoncity.gov.ph" target="_blank">
+        <img src="images/logo3.png" alt="Barangay Talipapa Logo">
+      </a>
+      <a href="https://toxicalchemist.github.io/NSTP/" target="_blank">
+        <img src="images/logo2.png" alt="Quezon City Logo">
+      </a>
+      <a href="https://qcu.edu.ph" target="_blank">
+        <img src="images/logo5.png" alt="Barangay Talipapa Logo">
+      </a>
+      <a href="https://example.com" target="_blank">
+        <img src="images/logo4.png" alt="Quezon City Logo">
+      </a>
+      <a href="https://example.com" target="_blank">
+        <img src="images/logo1.png" alt="Barangay Talipapa Logo">
+      </a>
+    </div>
+
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+    
+    <ul>
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+      <li><a href="tradehub.html"><i class="fas fa-exchange-alt"></i> Trading Activity</a></li>
+      <li><a href="resources.html"><i class="fas fa-file-download"></i> Resources</a></li>
+    </ul>
+  </nav>
+
+  <!-- Top Banner Section -->
+  <section class="top-banner-section">
+    <div class="content-container">
+      <div class="left-side">
+        <h1 class="welcome-title">Welcome to Barangay Talipapa!</h1>
+        <p class="welcome-description">A progressive community fostering environmental sustainability and unity in Quezon City, Philippines.</p>
+
+        <div class="mv-boxes">
+          <div class="mv-box">
+            <h2><i class="fas fa-seedling"></i> Mission</h2>
+            <p id="mission-text">To serve the constituents of Barangay Talipapa through transparent governance, efficient service delivery, and proactive community engagement. We commit to promoting peace and order, sustainable development, and the welfare of all residents through responsive programs in health, education, environment, disaster preparedness, and social equity.
+
+            </p>
+          </div>
+          <div class="mv-box">
+            <h2><i class="fas fa-eye"></i> Vision</h2>
+            <p id="vision-text">A peaceful, resilient, and progressive Barangay Talipapa — a model urban community in Quezon City where every resident enjoys inclusive development, accessible public services, and a clean, safe, and empowered environment.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-side">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/_A71fgP5Xt8?si=0cAnvUTo6fxZRYXE" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- Achievements Section -->
+<section class="projects-layout">
+  <div class="achievements-container">
+    <h2><i class="fas fa-trophy"></i> Achievements</h2>
+    <ul id="achievements-list" class="achievements-grid">
+      <!-- Achievements will load here> --> 
+    </ul>
+  </div>
+</section>
+
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-info">
+        <p><i class="fas fa-map-marker-alt"></i> Barangay Talipapa, Novaliches, Quezon City</p>
+        <p><i class="fas fa-phone"></i> Desk Office: 0917-1556735</p>
+        <p><i class="fas fa-phone"></i> Admin Office: 8-3518171</p>
+        <p><i class="fas fa-envelope"></i> Email: barangay.talipapa2018@gmail.com</p>
+      </div>
+      <div class="copyright">
+        &copy; 2025 Group1 SBIT-1F. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Load Mission and Vision
+    document.getElementById('mission-text').textContent = localStorage.getItem('mission') || 'To serve the constituents of Barangay Talipapa through transparent governance, efficient service delivery, and proactive community engagement. We commit to promoting peace and order, sustainable development, and the welfare of all residents through responsive programs in health, education, environment, disaster preparedness, and social equity.';
+    document.getElementById('vision-text').textContent = localStorage.getItem('vision') || 'A peaceful, resilient, and progressive Barangay Talipapa — a model urban community in Quezon City where every resident enjoys inclusive development, accessible public services, and a clean, safe, and empowered environment.';
+
+    // Load Achievements
+    const achievements = JSON.parse(localStorage.getItem('achievementsList')) || [];
+    const achievementsList = document.getElementById('achievements-list');
+    achievementsList.innerHTML = achievements.length > 0 ? achievements.map(achievement => `
+      <li>
+        <div class="achievement-container">
+          <a href="${achievement.link || '#'}" target="_blank">
+            <img src="${achievement.image}" alt="${achievement.title}">
+            <h4>${achievement.title}</h4>
+          </a>
+          <p>${achievement.description}</p>
+        </div>
+      </li>
+    `).join('') : '<li>No achievements added yet.</li>';
+
+   
+const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+     
+</script>
+
+</body>
+</html>

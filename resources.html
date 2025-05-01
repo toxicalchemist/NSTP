@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="resources.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+  <title>Barangay Talipapa - Resources</title>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo-container">
+      <a href="https://quezoncity.gov.ph" target="_blank">
+        <img src="images/logo3.png" alt="Barangay Talipapa Logo">
+      </a>
+      <a href="https://toxicalchemist.github.io/NSTP/" target="_blank">
+        <img src="images/logo2.png" alt="Quezon City Logo">
+      </a>
+      <a href="https://qcu.edu.ph" target="_blank">
+        <img src="images/logo5.png" alt="Barangay Talipapa Logo">
+      </a>
+      <a href="https://example.com" target="_blank">
+        <img src="images/logo4.png" alt="Quezon City Logo">
+      </a>
+      <a href="https://example.com" target="_blank">
+        <img src="images/logo1.png" alt="Barangay Talipapa Logo">
+      </a>
+    </div>
+
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+      <li><a href="tradehub.html"><i class="fas fa-exchange-alt"></i> Trading Activity</a></li>
+      <li><a href="resources.html" class="active"><i class="fas fa-file-download"></i> Resources</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Downloadable Forms Section -->
+    <section class="resources-section">
+      <h2><i class="fas fa-file-download"></i> Downloadable Barangay Forms</h2>
+      <p>Citizens may download the following forms for submission to the barangay office. Click the download button next to each form.</p>
+
+      <div id="dynamic-forms"></div>
+    </section>
+  </main> 
+</body>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-info">
+        <p><i class="fas fa-map-marker-alt"></i> Barangay Talipapa, Novaliches, Quezon City</p>
+        <p><i class="fas fa-phone"></i> Desk Office: 0917-1556735</p>
+        <p><i class="fas fa-phone"></i> Admin Office: 8-3518171</p>
+        <p><i class="fas fa-envelope"></i> Email: barangay.talipapa2018@gmail.com</p>
+      </div>
+      <div class="copyright">
+        &copy; 2025 Group1 SBIT-1F. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Dynamic Resources Rendering
+    const dynamicContainer = document.getElementById('dynamic-forms');
+    const storedResources = JSON.parse(localStorage.getItem('resources')) || [];
+
+    if (storedResources.length === 0) {
+      dynamicContainer.innerHTML = '<p>No downloadable forms available at this time.</p>';
+    } else {
+      dynamicContainer.innerHTML = storedResources.map(form => `
+        <div class="form-entry">
+          <i class="fas fa-file-download" alt="Form Icon"></i>
+          <div class="form-text">
+            <h3>${form.title}</h3>
+          </div>
+          <div class="form-buttons">
+            <a href="${form.file}" download><i class="fas fa-download"></i> Download PDF</a>
+          </div>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

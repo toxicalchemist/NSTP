@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: url('images/background.png') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #2d582c;
+    width: 100%;
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    text-align: center;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+nav ul li a:hover, 
+nav ul li a.active {
+    background-color: #4a8c46;
+}
+
+/* Projects Container */
+.projects-container {
+    text-align: center;
+    margin: 120px auto 40px;
+    padding: 20px;
+    width: 80%;
+}
+
+/* Carousel */
+.carousel {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    transition: 0.5s;
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
+
+.slide img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.caption {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Navigation Buttons */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 5px;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background: #2d582c;
+    color: white;
+    padding: 15px;
+    width: 100%;
+}
+/* About Us Page */
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1100px;
+    margin: 100px auto 40px;
+    padding: 20px;
+}
+
+/* History Section */
+.history-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.history-img img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Mission & Vision (Two Columns) */
+.mission-vision {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.mission, .vision {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    width: 48%;
+    text-align: center;
+}
+
+/* Organizational Structure */
+.structure-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top-node, .second-level {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Projects Slideshow */
+.projects-carousel {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+}
+
+.projects-carousel img {
+    width: 100%;
+    border-radius: 10px;
+}

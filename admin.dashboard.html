@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Barangay Talipapa</title>
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<nav>
+  <div class="logo-container">
+    <img src="images/logo3.png" alt="Barangay Talipapa Logo">
+    <img src="images/logo2.png" alt="Quezon City Logo">
+    <img src="images/logo5.png" alt="Barangay Talipapa Logo">
+    <img src="images/logo4.png" alt="Quezon City Logo">
+    <img src="images/logo1.png" alt="Barangay Talipapa Logo">
+  </div>
+</nav>
+
+<div class="dashboard-container">
+  <h2>Admin Dashboard</h2>
+
+  <!-- Mission and Vision Editing Sections -->
+  <div class="section">
+    <h3>Mission</h3>
+    <textarea id="mission-text" rows="4" placeholder="Edit Mission Statement..."></textarea>
+    <button onclick="saveMission()">Save Mission</button>
+  </div>
+
+  <div class="section">
+    <h3>Vision</h3>
+    <textarea id="vision-text" rows="4" placeholder="Edit Vision Statement..."></textarea>
+    <button onclick="saveVision()">Save Vision</button>
+  </div>
+
+  <!-- Achievements Section -->
+  <div class="section">
+    <h3>Achievements</h3>
+    <textarea id="achievement-title" placeholder="Enter Achievement Title"></textarea>
+    <textarea id="achievement-description" placeholder="Enter Achievement Description"></textarea>
+    <textarea id="achievement-link" placeholder="Enter Achievement Link (optional)"></textarea>
+    <input type="file" id="achievement-image" accept="image/*">
+    <button onclick="addAchievement()">Add Achievement</button>
+  </div>
+
+  <!-- List of Achievements -->
+  <div class="section">
+    <h3>Current Achievements</h3>
+    <ul id="achievements-list"></ul>
+  </div>
+
+  <!-- Barangay Officials Editing Section -->
+  <div class="section">
+    <h3>Barangay Officials</h3>
+    <div id="officers-form"></div>
+    <button onclick="saveOfficers()">Save All Officers</button>
+  </div>
+
+  <!-- Resource Forms Admin Section -->
+  <div class="section">
+    <h3>Manage Resources</h3>
+    <input type="text" id="resource-title" placeholder="Enter Form Title">
+    <input type="file" id="resource-file" accept="application/pdf">
+    <button onclick="addResource()">Add Resource</button>
+    <ul id="resource-list"></ul>
+  </div>
+
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+// === Mission & Vision ===
+document.getElementById('mission-text').value = localStorage.getItem('mission') || '';
+document.getElementById('vision-text').value = localStorage.getItem('vision') || '';
+
+function saveMission() {
+  localStorage.setItem('mission', document.getElementById('mission-text').value);
+  alert("Mission saved!");
+}
+function saveVision() {
+  localStorage.setItem('vision', document.getElementById('vision-text').value);
+  alert("Vision saved!");
+}
+
+// === Achievements ===
+const achievements = JSON.parse(localStorage.getItem('achievementsList')) || [];
+const achievementsList = document.getElementById('achievements-list');
+
+achievementsList.innerHTML = achievements.map(achievement => `
+  <li>
+    <div class="achievement-container">
+      <a href="${achievement.link || '#'}" target="_blank">
+        <img src="${achievement.image}" alt="${achievement.title}" style="width:100px;height:70px;object-fit:cover;">
+        <h4>${achievement.title}</h4>
+      </a>
+      <p>${achievement.description}</p>
+      <button onclick="deleteAchievement('${achievement.title}')">Delete</button>
+    </div>
+  </li>
+`).join('');
+
+function addAchievement() {
+  const title = document.getElementById('achievement-title').value;
+  const description = document.getElementById('achievement-description').value;
+  const link = document.getElementById('achievement-link').value;
+  const file = document.getElementById('achievement-image').files[0];
+  if (!title || !description || !file) return alert("Complete all fields and upload image.");
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    achievements.push({ title, description, link, image: e.target.result });
+    localStorage.setItem('achievementsList', JSON.stringify(achievements));
+    location.reload();
+  };
+  reader.readAsDataURL(file);
+}
+
+function deleteAchievement(title) {
+  const index = achievements.findIndex(item => item.title === title);
+  if (index !== -1) {
+    achievements.splice(index, 1);
+    localStorage.setItem('achievementsList', JSON.stringify(achievements));
+    location.reload();
+  }
+}
+
+// === Barangay Officials ===
+const fixedPositions = [
+  "Punong Barangay",
+  "Tagapamahala ng Barangay",
+  "Barangay Treasurer",
+  "Barangay Secretary",
+  "Kagawad", "Kagawad", "Kagawad", "Kagawad", "Kagawad", "Kagawad", "Kagawad",
+  "SK Member", "SK Member", "SK Member", "SK Member", "SK Member", "SK Member", "SK Member"
+];
+
+const defaultOfficers = fixedPositions.map((position, i) => ({
+  name: `Officer ${i + 1}`,
+  position,
+  image: ""
+}));
+
+let officers = JSON.parse(localStorage.getItem('officersList')) || [];
+if (officers.length !== fixedPositions.length) {
+  officers = defaultOfficers;
+  localStorage.setItem('officersList', JSON.stringify(officers));
+}
+
+const formContainer = document.getElementById('officers-form');
+
+function renderForm() {
+  formContainer.innerHTML = '';
+  officers.forEach((officer, index) => {
+    formContainer.innerHTML += `
+      <div class="officer-form">
+        <label><strong>${officer.position}</strong></label><br>
+        <input type="text" id="name-${index}" value="${officer.name}" placeholder="Enter Name"><br><br>
+        <input type="file" id="image-${index}" accept="image/*" onchange="previewImage(event, ${index})"><br>
+        <img id="preview-${index}" src="${officer.image || 'images/noimg.jpg'}" alt="Preview" style="width:100px;height:100px;object-fit:cover;margin-top:5px;"><br><hr>
+      </div>
+    `;
+  });
+}
+
+function previewImage(event, index) {
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    officers[index].image = e.target.result;
+    document.getElementById(`preview-${index}`).src = e.target.result;
+  };
+  reader.readAsDataURL(event.target.files[0]);
+}
+
+function saveOfficers() {
+  officers.forEach((officer, index) => {
+    officer.name = document.getElementById(`name-${index}`).value;
+  });
+  localStorage.setItem('officersList', JSON.stringify(officers));
+  alert('Officers saved successfully!');
+}
+
+renderForm();
+
+// === Resource Management ===
+const resources = JSON.parse(localStorage.getItem('resources')) || [];
+const resourceList = document.getElementById('resource-list');
+
+function renderResources() {
+  resourceList.innerHTML = resources.map((res, index) => `
+    <li>
+      <strong>${res.title}</strong>
+      <a href="${res.file}" download>Download</a>
+      <button onclick="deleteResource(${index})">Delete</button>
+    </li>
+  `).join('');
+}
+
+function addResource() {
+  const title = document.getElementById('resource-title').value;
+  const file = document.getElementById('resource-file').files[0];
+
+  if (!title || !file) return alert("Complete all fields");
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    resources.push({ title, file: reader.result });
+    localStorage.setItem('resources', JSON.stringify(resources));
+    renderResources();
+    alert('Resource added successfully!');
+  };
+  reader.readAsDataURL(file);
+}
+
+function deleteResource(index) {
+  resources.splice(index, 1);
+  localStorage.setItem('resources', JSON.stringify(resources));
+  renderResources();
+}
+
+renderResources();
+
+// === Logout ===
+function logout() {
+  window.location.href = "admin.login.html";
+}
+</script>

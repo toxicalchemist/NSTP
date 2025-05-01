@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Hub - Barangay Talipapa</title>
+  <link rel="stylesheet" href="tradehub.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+  <div class="logo-container">
+    <a href="https://quezoncity.gov.ph" target="_blank">
+      <img src="images/logo3.png" alt="Barangay Talipapa Logo">
+    </a>
+    <a href="https://toxicalchemist.github.io/NSTP/" target="_blank">
+      <img src="images/logo2.png" alt="Quezon City Logo">
+    </a>
+    <a href="https://qcu.edu.ph" target="_blank">
+      <img src="images/logo5.png" alt="Barangay Talipapa Logo">
+    </a>
+    <a href="https://example.com" target="_blank">
+      <img src="images/logo4.png" alt="Quezon City Logo">
+    </a>
+    <a href="https://example.com" target="_blank">
+      <img src="images/logo1.png" alt="Barangay Talipapa Logo">
+    </a>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <i class="fas fa-bars"></i>
+  </div>
+  
+  <ul>
+    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+    <li><a href="tradehub.html"><i class="fas fa-exchange-alt"></i> Trading Activity</a></li>
+    <li><a href="resources.html"><i class="fas fa-file-download"></i> Resources</a></li>
+  </ul>
+</nav>
+
+<!-- Main Content -->
+<section class="top-banner-section">
+  <div class="welcome-left">
+    <h1 class="welcome-title" style="text-align:center;">TRADE YOUR RECYCLABLES NOW!!!</h1>
+    <div class="icon" style="text-align:center;">
+     
+    </div>
+
+    <div class="mv-boxes">
+      <div class="mv-box">
+        <h2><i class="fas fa-seedling"></i> Input</h2>
+        
+        <p><b>Select Recyclable Type:</b></p>
+        <select id="recyclableType">
+          <option value="plastic">Plastic Bottles</option>
+          <option value="cardboard">Cardboard / Karton </option>
+          <option value="plasticAll">Plastic (All Sorts)</option>
+          <option value="plastic">Used Cotton Clothes</option>
+          <option value="cardboard">Food Take Away Containers </option>
+          <option value="plasticAll">Candy And Chichirya Wrappers</option>
+        </select>
+    
+        <br><br>
+    
+        <p><b>Enter weight (e.g., 2.3 kg):</b></p><br>
+        <input type="number" id="input" placeholder="0 KG">
+        <button class="btn" onclick="convertWeight()">Convert</button>
+      </div>
+    
+      <div class="mv-box">
+        <h2><i class="fas fa-eye">Result</i></h2>
+        <p><b>Conversion Result:</b></p><br>
+        <b><p id="output">TOTAL: </p></b>
+        <img id="product-image" src="" alt="Product" style="display:none; width:200px; margin-top:15px;">
+
+      </div>
+    </div>
+    
+<div class="products-wrapper">
+  <div class="product-item">
+    <h2><i class="fa-solid fa-chart-simple"></i> Conversion Rates</h2>
+    <img src="images/rates.png" alt="Conversion Rates">
+  </div>
+
+  <div class="product-item">
+    <h2><i class="fa-solid fa-circle-exclamation"></i> Rules & Guidelines</h2>
+    <img src="images/guide.png" alt="Rules & Guidelines">
+  </div>
+</div>
+
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-info">
+      <p><i class="fas fa-map-marker-alt"></i> Barangay Talipapa, Novaliches, Quezon City</p>
+      <p><i class="fas fa-phone"></i> Desk Office: 0917-1556735</p>
+      <p><i class="fas fa-phone"></i> Admin Office: 8-3518171</p>
+      <p><i class="fas fa-envelope"></i> Email: barangay.talipapa2018@gmail.com</p>
+    </div>
+    <div class="copyright">
+      &copy; 2025 Group1 SBIT-1F. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- Script -->
+<script>
+function convertWeight() {
+  const input = parseFloat(document.getElementById("input").value.trim());
+  const output = document.getElementById("output");
+  const productImage = document.getElementById("product-image");
+
+  let result = "";
+  let imageSrc = "";
+
+  if (isNaN(input)) {
+    result = "Invalid input.";
+    imageSrc = "";
+  } else if (input > 0.0 && input < 2.0) {
+    result = "1 Eco Bag or Eco Rag.";
+    imageSrc = "images/eco_bag.jpg"; // OR rag.png depende kung anong gusto mong default
+  } else if (input >= 2.0 && input <= 3.0) {
+    result = "Vermitea (Liquid Fertilizer).";
+    imageSrc = "images/vermitea.png";
+  } else if (input > 3.0 && input <= 4.0) {
+    result = "1 Coco Fiber Rice Hull.";
+    imageSrc = "images/rice hull.jpg"; 
+  } else if (input > 4.0 && input <= 5.0) {
+    result = "1 Good Soil.";
+    imageSrc = "images/soil.jpg";
+  } else if (input > 5.0) {
+    result = "1 Good Soil.";
+    imageSrc = "images/soil.jpg";
+  } else {
+    result = "Invalid input.";
+    imageSrc = "";
+  }
+
+  output.innerText = `TOTAL: ${result}`;
+
+  if (imageSrc) {
+    productImage.src = imageSrc;
+    productImage.style.display = "block";
+  } else {
+    productImage.style.display = "none";
+  }
+}
+
+const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+
+</script>
+
+</body>
+</html>
